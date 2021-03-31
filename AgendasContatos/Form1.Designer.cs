@@ -31,11 +31,11 @@ namespace AgendasContatos
         {
             this.lbxContatos = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txbNome = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txbEmail = new System.Windows.Forms.TextBox();
+            this.txbNumeroTelefone = new System.Windows.Forms.TextBox();
             this.btnIncluir = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
@@ -60,12 +60,12 @@ namespace AgendasContatos
             this.label1.TabIndex = 1;
             this.label1.Text = "Nome:";
             // 
-            // textBox1
+            // txbNome
             // 
-            this.textBox1.Location = new System.Drawing.Point(348, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(343, 20);
-            this.textBox1.TabIndex = 2;
+            this.txbNome.Location = new System.Drawing.Point(348, 12);
+            this.txbNome.Name = "txbNome";
+            this.txbNome.Size = new System.Drawing.Size(343, 20);
+            this.txbNome.TabIndex = 2;
             // 
             // label2
             // 
@@ -85,19 +85,19 @@ namespace AgendasContatos
             this.label3.TabIndex = 4;
             this.label3.Text = "Telefone:";
             // 
-            // textBox2
+            // txbEmail
             // 
-            this.textBox2.Location = new System.Drawing.Point(348, 51);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(343, 20);
-            this.textBox2.TabIndex = 5;
+            this.txbEmail.Location = new System.Drawing.Point(348, 51);
+            this.txbEmail.Name = "txbEmail";
+            this.txbEmail.Size = new System.Drawing.Size(343, 20);
+            this.txbEmail.TabIndex = 5;
             // 
-            // textBox3
+            // txbNumeroTelefone
             // 
-            this.textBox3.Location = new System.Drawing.Point(348, 88);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(343, 20);
-            this.textBox3.TabIndex = 6;
+            this.txbNumeroTelefone.Location = new System.Drawing.Point(348, 88);
+            this.txbNumeroTelefone.Name = "txbNumeroTelefone";
+            this.txbNumeroTelefone.Size = new System.Drawing.Size(343, 20);
+            this.txbNumeroTelefone.TabIndex = 6;
             // 
             // btnIncluir
             // 
@@ -136,6 +136,7 @@ namespace AgendasContatos
             this.btnSalvar.TabIndex = 10;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnCancelar
             // 
@@ -157,11 +158,11 @@ namespace AgendasContatos
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnAlterar);
             this.Controls.Add(this.btnIncluir);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txbNumeroTelefone);
+            this.Controls.Add(this.txbEmail);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txbNome);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbxContatos);
             this.Name = "frmAgendaContatos";
@@ -176,11 +177,11 @@ namespace AgendasContatos
 
         private System.Windows.Forms.ListBox lbxContatos;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txbNome;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txbEmail;
+        private System.Windows.Forms.TextBox txbNumeroTelefone;
         private System.Windows.Forms.Button btnIncluir;
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Button btnExcluir;

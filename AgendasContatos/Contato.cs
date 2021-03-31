@@ -18,5 +18,9 @@ namespace AgendasContatos
             this.Email = email;
             this.NumeroTelefone = numeroTelefone;
         }
+        public override string ToString()
+        {
+            return string.Format("{0} - {1}, {2}", this.Nome, this.Email, this.NumeroTelefone);
+        }
     }
 }
