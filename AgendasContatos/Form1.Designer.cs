@@ -50,6 +50,7 @@ namespace AgendasContatos
             this.lbxContatos.Name = "lbxContatos";
             this.lbxContatos.Size = new System.Drawing.Size(273, 264);
             this.lbxContatos.TabIndex = 0;
+            this.lbxContatos.SelectedIndexChanged += new System.EventHandler(this.lbxContatos_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -127,6 +128,7 @@ namespace AgendasContatos
             this.btnExcluir.TabIndex = 9;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnSalvar
             // 

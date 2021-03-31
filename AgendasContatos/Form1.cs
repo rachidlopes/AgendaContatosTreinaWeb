@@ -12,6 +12,8 @@ namespace AgendasContatos
 {
     public partial class frmAgendaContatos : Form
     {
+        private OperacaoEnum acao;
+
         public frmAgendaContatos()
         {
             InitializeComponent();
@@ -23,6 +25,7 @@ namespace AgendasContatos
             AlterarBotoesIncluirAlterarExcluir(true);
             //lbxContatos.Items.AddRange(ManipuladorArquivos.LerArquivos().ToArray());
             CarregarListaContatos();
+            AlterarEstadoCampos(false);
         }
         private void AlterarBotoesSalvarECancelar(bool estado)
         {
@@ -41,18 +44,23 @@ namespace AgendasContatos
         {
             AlterarBotoesSalvarECancelar(true);
             AlterarBotoesIncluirAlterarExcluir(false);
+            AlterarEstadoCampos(true);
+            acao = OperacaoEnum.INCLUIR;
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
             AlterarBotoesSalvarECancelar(true);
             AlterarBotoesIncluirAlterarExcluir(false);
+            AlterarEstadoCampos(true);
+            acao = OperacaoEnum.ALTERAR;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             AlterarBotoesSalvarECancelar(false);
             AlterarBotoesIncluirAlterarExcluir(true);
+            AlterarEstadoCampos(false);
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -68,18 +76,30 @@ namespace AgendasContatos
             {
                 contatosList.Add(contatoDaLista);
             }
-            contatosList.Add(contato);
+            if (acao == OperacaoEnum.INCLUIR)
+            {
+                contatosList.Add(contato);
+            }
+            else
+            {
+                int indice = lbxContatos.SelectedIndex;
+                contatosList.RemoveAt(indice);
+                contatosList.Insert(indice, contato);
+                ManipuladorArquivos.EscreverArquivo(contatosList);
+            }
             ManipuladorArquivos.EscreverArquivo(contatosList);
             CarregarListaContatos();
             AlterarBotoesSalvarECancelar(false);
             AlterarBotoesIncluirAlterarExcluir(true);
             LimparCampos();
+            AlterarEstadoCampos(false);
         }
 
     private void CarregarListaContatos()
         {
             lbxContatos.Items.Clear();
             lbxContatos.Items.AddRange(ManipuladorArquivos.LerArquivos().ToArray());
+            lbxContatos.SelectedIndex = 0;
 
         }
     private void LimparCampos()
@@ -88,5 +108,39 @@ namespace AgendasContatos
             txbEmail.Text = "";
             txbNumeroTelefone.Text = "";
         }
+    private void AlterarEstadoCampos(bool estado)
+        {
+            txbNome.Enabled = estado;
+            txbEmail.Enabled = estado;
+            txbNumeroTelefone.Enabled = estado;
+        }
+
+        private void lbxContatos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Contato contato = (Contato)lbxContatos.Items[lbxContatos.SelectedIndex];
+            txbNome.Text = contato.Nome;
+            txbEmail.Text = contato.Email;
+            txbNumeroTelefone.Text = contato.NumeroTelefone;
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Tem certeza?", "Pergunta", MessageBoxButtons.YesNo)== DialogResult.Yes)
+            {
+                int indiceExcluido = lbxContatos.SelectedIndex;
+                lbxContatos.SelectedIndex = 0;
+                lbxContatos.Items.RemoveAt(indiceExcluido);
+                List<Contato> contatosList = new List<Contato>();
+                foreach (Contato contato in lbxContatos.Items)
+                {
+                    contatosList.Add(contato);
+                }
+                ManipuladorArquivos.EscreverArquivo(contatosList);
+                
+                CarregarListaContatos();
+                LimparCampos();
+            }
+        }
     }
 }
+
